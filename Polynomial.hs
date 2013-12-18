@@ -3,6 +3,7 @@ module Polynomial
 , horner_element
 , horner
 , polyderiv
+, polyintegrate
 , newton
 ) where
 
@@ -47,6 +48,10 @@ horner l x =  horner_element l x 0
 polyderiv   :: (Num t, Enum t) => [t] -> [t]
 polyderiv l =  tail $ zipWith (*) l [0..]
 
+-- calculate the integral of a polynomial given
+-- as a list of coefficients
+polyintegrate :: (Num t, Enum t, Fractional t) => [t] -> [t]
+polyintegrate l = 0 : (zipWith (/) l [1..])
 -- use newton's method to find a zero given a polynomial and initial guess
 newton       :: (Num t, Enum t, Fractional t, Floating t) => [t] -> t -> Int -> t
 newton p x 1 =  x - (eval p x)/(eval (polyderiv p) x)
