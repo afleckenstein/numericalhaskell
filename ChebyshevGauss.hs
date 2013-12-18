@@ -10,5 +10,6 @@ chebroots n = map cos l where num k = fromIntegral (2*k-1)
 
 chebgauss :: (Num t, Floating t) => (t -> t) -> Int -> t
 chebgauss f n = prod where weight = pi/(fromIntegral (n))
-                           xs      = map f (chebroots n)
+                           g x = (f x) * sqrt(1-x**2)
+                           xs      = map g (chebroots n)
                            prod   = weight * (sum xs) 
