@@ -1,7 +1,6 @@
--- takes a function, lower bound, upper bound, and intervals, returns a number
+-- takes a function f, lower bound a, upper bound b, and intervals n 
+-- returns a number.
 trap :: (Num a, Fractional a, Enum a) => (a -> a) -> a -> a -> a -> a
-
-
 trap f a b n =
     h * s
     where h = (b - a)/n                       -- size of interval
